@@ -7,13 +7,10 @@ const CustomSwitch = ({ children, value }) => {
     if (e.type.name === "CustomCase") {
       if (typeof e.props.value === "function" && e.props.value(value)) {
         cases.push(e);
-
+      } else if (e.props.value === value) {
+        cases.push(e);
       }
-        else if (e.props.value === value) {
-          cases.push(e);
-        }
-      }
-     else if(e.type.name === "DefaultCase") {
+    } else if (e.type.name === "DefaultCase") {
       defaults.push(e);
     }
   });
@@ -47,7 +44,7 @@ function App() {
         <CustomCase value={20}>Hello 20</CustomCase>
         <CustomCase value={30}>Hello 30</CustomCase>
         <CustomCase value={10}>Hello 10</CustomCase>
-        <DefaultCase >Hello 40</DefaultCase>
+        <DefaultCase>Hello 40</DefaultCase>
       </CustomSwitch>
     </>
   );
